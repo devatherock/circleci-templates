@@ -37,7 +37,7 @@ workflows:
           orb_name: devatherock/circleci-templates
           vcs_type: << pipeline.project.type >>
           pub_type: dev
-          dev_tags: latest
+          dev_tags: "dev:alpha,dev:${CIRCLE_SHA1:0:8}"
           requires:
             - dev_pack
           context: orb-publishing
