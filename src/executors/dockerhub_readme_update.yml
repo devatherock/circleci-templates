@@ -1,0 +1,20 @@
+description: >
+  Executor for dockerhub_readme_update job
+
+parameters:
+  version:
+    default: 3.4.2
+    description: >
+      Version of peterevans/dockerhub-description docker image to use
+    type: string
+  work_dir:
+    type: string
+    description: "The working directory"
+
+docker:
+  - image: peterevans/dockerhub-description:<< parameters.version >>
+    auth:
+      username: $DOCKER_USERNAME
+      password: $DOCKER_PASSWORD
+resource_class: small
+working_directory: << parameters.work_dir >>

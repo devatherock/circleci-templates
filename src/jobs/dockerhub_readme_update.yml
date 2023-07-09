@@ -1,0 +1,37 @@
+description: >
+  Updates the dockerhub readme of a docker image
+
+parameters:
+  docker_org:
+    type: string
+    description: "The docker namespace under which the image resides. Needs to end with a trailing slash"
+    default: "devatherock/"
+  docker_image:
+    type: string
+    description: "The docker image for which to update the readme"
+  image_description:
+    type: string
+    description: "Dockerhub short description for the image"
+  readme_path:
+    type: string
+    description: "Path to the readme file"
+    default: "README.md"
+  work_dir:
+    type: string
+    description: "The working directory"
+
+executor:
+  name: dockerhub_readme_update
+  work_dir: << parameters.work_dir >>
+
+environment:
+  DOCKERHUB_REPOSITORY: '<< parameters.docker_org >><< parameters.docker_image >>'
+  SHORT_DESCRIPTION: '<< parameters.image_description >>'
+  README_FILEPATH: '<< parameters.readme_path >>'
+steps:
+  - checkout
+  - attach_workspace:
+      at: << parameters.work_dir >>
+  - run: |
+      name: 'Trigger entrypoint'
+      command: sh /entrypoint.sh
