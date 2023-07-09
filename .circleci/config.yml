@@ -12,17 +12,13 @@ docker_auth: &docker_auth
 resource_class: &resource_class
   resource_class: small
 
-executors:
-  default_small:
-    docker:
-      - image: circleci/circleci-cli:0.1.26646
-        <<: *docker_auth
-    <<: *resource_class
-  python_small:
-    docker:
-      - image: cimg/python:3.11
-        <<: *docker_auth
-    <<: *resource_class
+default-executor: &default-executor
+  name: orb-tools/default
+  <<: *resource_class
+
+python-executor: &python-executor
+  name: orb-tools/python
+  <<: *resource_class
 
 filters: &filters
   tags:
@@ -32,19 +28,19 @@ workflows:
   lint-pack:
     jobs:
       - orb-tools/lint:
-          executor: python_small
+          executor: *python-executor
           filters: *filters
       - orb-tools/pack:
-          executor: default_small
+          executor: *default-executor
           filters: *filters
       - orb-tools/review:
-          executor: python_small
+          executor: *python-executor
           filters: *filters
       - shellcheck/check:
           filters: *filters
       # Triggers the next workflow in the Orb Development Kit.
       - orb-tools/continue:
-          executor: default_small
+          executor: *default-executor
           pipeline_number: << pipeline.number >>
           vcs_type: << pipeline.project.type >>
           orb_name: circleci-templates
