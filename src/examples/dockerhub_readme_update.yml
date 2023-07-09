@@ -1,0 +1,18 @@
+description: >
+  Dockerhub readme update
+usage:
+  version: 2.1
+  orbs:
+    templates: devatherock/circleci-templates@0.1.0
+  workflows:
+    dockerhub-readme-update:
+      jobs:
+        - templates/dockerhub_readme_update:
+            name: dockerhub_readme_nexmo_oas_renderer
+            context:
+              - docker-credentials
+              - dockerhub-readme-credentials
+            docker_image: 'nexmo-oas-renderer'
+            image_description: 'Customized nexmo-oas-renderer image that can visualize yaml api specs from a git repo'
+            readme_path: 'nexmo-oas-renderer/README.md'
+            work_dir: '~/docker-images'
