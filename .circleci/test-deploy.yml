@@ -6,11 +6,6 @@ orbs:
   # The orb definition is intentionally not included here. It will be injected into the pipeline.
   circleci-templates: {}
 
-docker_auth: &docker_auth
-  auth:
-    username: $DOCKER_USERNAME
-    password: $DOCKER_PASSWORD
-
 resource_class: &resource_class
   resource_class: small
 
@@ -18,11 +13,9 @@ default-executor: &default-executor
   name: orb-tools/default
   <<: *resource_class
 
-# Use this tag to ensure test jobs always run,
-# even though the downstream publish job will only run on release tags.
 filters: &filters
-  tags:
-    only: /.*/
+  branches:
+    only: master
 
 # Filter for release tags.
 release-filters: &release-filters
@@ -31,23 +24,27 @@ release-filters: &release-filters
   tags:
     only: /^v[0-9]+\.[0-9]+\.[0-9]+$/
 
-jobs:
-  # Create jobs to test the commands of your orbs.
-  # You may want to add additional validation steps to ensure the commands are working as expected.
-  command-test:
-    docker:
-      - image: cimg/base:current
-    <<: *resource_class
-    steps:
-      - checkout
-      # Run your orb's commands to validate them.
 workflows:
-  test-deploy:
+  dev_release:
     jobs:
-      # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
-      # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
-      - command-test:
+      - orb-tools/pack:
+          name: dev_pack
+          executor: *default-executor
           filters: *filters
+      - orb-tools/publish:
+          name: dev_publish
+          executor: *default-executor
+          orb_name: devatherock/circleci-templates
+          vcs_type: << pipeline.project.type >>
+          pub_type: dev
+          dev_tags: latest
+          requires:
+            - dev_pack
+          context: orb-publishing
+          filters: *filters
+
+  release:
+    jobs:
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
           executor: *default-executor
@@ -60,6 +57,5 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-            - command-test
           context: orb-publishing
           filters: *release-filters
