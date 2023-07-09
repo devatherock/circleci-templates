@@ -32,6 +32,6 @@ steps:
   - checkout
   - attach_workspace:
       at: << parameters.work_dir >>
-  - run: |
+  - run:
       name: 'Trigger entrypoint'
       command: sh /entrypoint.sh
