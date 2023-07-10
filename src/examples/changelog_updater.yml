@@ -14,6 +14,7 @@ usage:
     update-changelog:
       jobs:
         - templates/changelog_updater:
+            name: changelog_updater
             context:
               - docker-credentials
               - changelog-updater-credentials
