@@ -1,0 +1,16 @@
+description: >
+  Updates the github changelog if it was not updated in the PR
+
+executor: changelog_updater
+
+environment:
+  VELA_BUILD_AUTHOR: "renovate[bot]"
+  VELA_BUILD_AUTHOR_EMAIL: "29139614+renovate[bot]@users.noreply.github.com"
+steps:
+  - add_ssh_keys:
+      fingerprints:
+        - "4a:86:fe:0e:c3:0e:ad:0d:1d:5c:3e:48:cf:28:39:5d"
+  - checkout
+  - run:
+      name: 'Update changelog'
+      command: sh /scripts/entry-point.sh

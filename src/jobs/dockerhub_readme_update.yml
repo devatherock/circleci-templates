@@ -33,5 +33,5 @@ steps:
   - attach_workspace:
       at: << parameters.work_dir >>
   - run:
-      name: 'Trigger entrypoint'
+      name: 'Update dockerhub readme'
       command: sh /entrypoint.sh
