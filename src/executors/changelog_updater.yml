@@ -1,0 +1,16 @@
+description: >
+  Executor for changelog_updater job
+
+parameters:
+  version:
+    default: 0.1.0
+    description: >
+      Version of devatherock/changelog-updater docker image to use
+    type: string
+
+docker:
+  - image: devatherock/changelog-updater:<< parameters.version >>
+    auth:
+      username: $DOCKER_USERNAME
+      password: $DOCKER_PASSWORD
+resource_class: small

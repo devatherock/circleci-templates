@@ -2,7 +2,7 @@ version: 2.1
 
 description: >
   Reusable versions of jobs that have been duplicated many times within `devatherock` org.
-  Contains only a job for dockerhub readme update as of now
+  Contains jobs for dockerhub readme update and changelog update as of now
 
 display:
   source_url: "https://github.com/devatherock/circleci-templates"
