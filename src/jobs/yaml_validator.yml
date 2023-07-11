@@ -1,0 +1,17 @@
+description: >
+  Checks if the yaml files in the working directory are valid
+
+parameters:
+  work_dir:
+    type: string
+    description: "The working directory"
+
+executor:
+  name: yaml_validator
+  work_dir: << parameters.work_dir >>
+
+steps:
+  - checkout
+  - run:
+      name: 'Validate yamls'
+      command: sh /scripts/entry-point.sh
