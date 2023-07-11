@@ -1,5 +1,5 @@
 description: >
-  Updates the github changelog if it was not updated in the PR
+  Adds a changelog entry, if it is missing, from pull request title
 
 executor: changelog_updater
 

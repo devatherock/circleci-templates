@@ -2,8 +2,12 @@
 
 ## [Unreleased]
 ### Added
+- Yaml validator job
+
+## [0.2.0] - 2023-07-10
+### Added
 - Published a dev version of the orb
-- Added job for updating changelog
+- Job for updating changelog
 
 ## [0.1.1] - 2023-07-09
 ### Changed

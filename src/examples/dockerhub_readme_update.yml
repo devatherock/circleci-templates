@@ -1,9 +1,12 @@
 description: >
-  Dockerhub readme update
+  Updates the dockerhub readme of a docker image
+
 usage:
   version: 2.1
+
   orbs:
     templates: devatherock/circleci-templates@0.1.0
+
   workflows:
     dockerhub-readme-update:
       jobs:

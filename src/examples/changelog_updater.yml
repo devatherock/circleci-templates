@@ -1,7 +1,9 @@
 description: >
   Adds a changelog entry, if it is missing, from pull request title
+
 usage:
   version: 2.1
+
   orbs:
     templates: devatherock/circleci-templates@0.2.0
 

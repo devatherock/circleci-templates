@@ -1,0 +1,17 @@
+description: >
+  Checks if the yaml files in the working directory are valid
+
+usage:
+  version: 2.1
+
+  orbs:
+    templates: devatherock/circleci-templates@0.3.0
+
+  workflows:
+    validate-yamls:
+      jobs:
+        - templates/yaml_validator:
+            name: validate_yamls
+            context:
+              - docker-credentials
+            work_dir: '~/artifactory-badge'
