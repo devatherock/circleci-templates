@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 ### Added
+- Job to send slack notification
+
+## [0.3.0] - 2023-07-10
+### Added
 - Yaml validator job
 
 ## [0.2.0] - 2023-07-10

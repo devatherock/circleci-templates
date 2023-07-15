@@ -1,0 +1,31 @@
+description: >
+  Sends a slack notification
+
+parameters:
+  text:
+    type: string
+    description: "The notification text"
+    default: "Success: {{.CircleBuildUrl}} by {{.CircleUsername}}"
+  channel:
+    type: string
+    description: "The channel to send the notification to"
+    default: "general"
+  title:
+    type: string
+    description: "The notification title"
+    default: "Build completed"
+  color:
+    type: string
+    description: "The color in which to highlight the notification"
+    default: "#33ad7f"
+
+executor: slack
+
+environment:
+  TEXT: "<< parameters.text >>"
+  CHANNEL: << parameters.channel >>
+  TITLE: "<< parameters.title >>"
+steps:
+  - run:
+      name: 'Send notification'
+      command: /bin/simpleslack -c "<< parameters.color >>" || true

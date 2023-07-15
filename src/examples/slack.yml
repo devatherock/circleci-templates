@@ -1,0 +1,17 @@
+description: >
+  Sends a slack notification
+
+usage:
+  version: 2.1
+
+  orbs:
+    templates: devatherock/circleci-templates@0.4.0
+
+  workflows:
+    notification:
+      jobs:
+        - templates/slack:
+            name: notify
+            context:
+              - docker-credentials
+              - slack-webhook
