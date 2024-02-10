@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 ### Added
+- Job to scan a docker image for vulnerabilities
+
+## [0.4.0] - 2023-07-15
+### Added
 - Job to send slack notification
 
 ## [0.3.0] - 2023-07-10

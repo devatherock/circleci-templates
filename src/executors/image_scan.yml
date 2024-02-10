@@ -1,0 +1,16 @@
+description: >
+  Executor for image_scan job
+
+parameters:
+  version:
+    default: 0.49.1
+    description: >
+      Version of aquasec/trivy docker image to use
+    type: string
+
+docker:
+  - image: aquasec/trivy:<< parameters.version >>
+    auth:
+      username: $DOCKER_USERNAME
+      password: $DOCKER_PASSWORD
+resource_class: small

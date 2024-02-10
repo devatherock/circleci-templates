@@ -1,0 +1,21 @@
+description: >
+  Scans a docker image for vulnerabilities
+
+parameters:
+  image:
+    type: string
+    description: "The image to scan"
+  exit_code:
+    type: integer
+    description: "Exit code for the scan when vulnerabilities are found"
+    default: 1
+
+executor: image_scan
+
+steps:
+  - run:
+      environment:
+        PARAM_IMAGE: << parameters.image >>
+        PARAM_EXIT_CODE: << parameters.exit_code >>
+      name: 'Scan image'
+      command: <<include(scripts/image_scan.sh)>>
