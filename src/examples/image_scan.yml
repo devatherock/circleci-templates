@@ -1,0 +1,17 @@
+description: >
+  Scans a docker image for vulnerabilities
+
+usage:
+  version: 2.1
+
+  orbs:
+    templates: devatherock/circleci-templates@0.5.0
+
+  workflows:
+    scan:
+      jobs:
+        - templates/image_scan:
+            name: image_scan
+            context:
+              - docker-credentials
+            image: devatherock/drone-yaml-validator:latest
