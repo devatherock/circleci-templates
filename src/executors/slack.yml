@@ -3,13 +3,13 @@ description: >
 
 parameters:
   version:
-    default: 1.0.0
+    default: '1.20'
     description: >
-      Version of devatherock/simple-slack docker image to use
+      Version of cimg/go docker image to use
     type: string
 
 docker:
-  - image: devatherock/simple-slack:<< parameters.version >>
+  - image: cimg/go:<< parameters.version >>
     auth:
       username: $DOCKER_USERNAME
       password: $DOCKER_PASSWORD
