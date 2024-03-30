@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+### Changed
+- Slack job to wait for workflow completion
+
+## [0.5.0] - 2024-02-10
 ### Added
 - Job to scan a docker image for vulnerabilities
 

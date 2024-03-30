@@ -24,8 +24,9 @@ executor: slack
 environment:
   TEXT: "<< parameters.text >>"
   CHANNEL: << parameters.channel >>
+  COLOR: << parameters.color >>
   TITLE: "<< parameters.title >>"
 steps:
   - run:
       name: 'Send notification'
-      command: /bin/simpleslack -c "<< parameters.color >>" || true
+      command: <<include(scripts/slack.sh)>>
