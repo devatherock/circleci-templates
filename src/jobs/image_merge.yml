@@ -1,0 +1,21 @@
+description: >
+  Merges amd64 and arm64 docker images into a single multi-arch image
+
+parameters:
+  docker_org:
+    type: string
+    description: "The docker namespace under which the image resides. Needs to end with a trailing slash"
+    default: "devatherock/"
+  docker_image:
+    type: string
+    description: "The docker image to merge"
+
+executor: image_merge
+
+steps:
+  - setup_remote_docker
+  - run:
+      environment:
+        PARAM_IMAGE: '<< parameters.docker_org >><< parameters.docker_image >>'
+      name: 'Merge image'
+      command: <<include(scripts/image_merge.sh)>>
