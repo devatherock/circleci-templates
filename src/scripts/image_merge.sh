@@ -1,4 +1,5 @@
 TAG=${CIRCLE_SHA1:0:8}
+echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
 docker manifest create ${PARAM_IMAGE}:$TAG \
     ${PARAM_IMAGE}:${TAG}-amd64  \
     ${PARAM_IMAGE}:${TAG}-arm64
