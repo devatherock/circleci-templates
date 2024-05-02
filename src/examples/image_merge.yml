@@ -1,0 +1,17 @@
+description: >
+  Merges amd64 and arm64 docker images into a single multi-arch image
+
+usage:
+  version: 2.1
+
+  orbs:
+    templates: devatherock/circleci-templates@0.7.0
+
+  workflows:
+    scan:
+      jobs:
+        - templates/image_merge:
+            name: publish_multi_arch
+            context:
+              - docker-credentials
+            docker_image: drone-yaml-validator

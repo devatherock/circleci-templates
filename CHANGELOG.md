@@ -1,6 +1,10 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- Job to create multi-arch images
+
+## [0.6.0] - 2024-04-22
 ### Changed
 - Slack job to wait for workflow completion
 

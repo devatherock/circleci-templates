@@ -1,0 +1,15 @@
+description: >
+  Executor for image_merge job
+
+parameters:
+  version:
+    default: '1.20'
+    description: >
+      Version of cimg/go docker image to use
+    type: string
+
+docker:
+  - image: cimg/go:<< parameters.version >>
+    auth:
+      username: $DOCKER_USERNAME
+      password: $DOCKER_PASSWORD
